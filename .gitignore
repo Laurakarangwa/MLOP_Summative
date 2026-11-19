@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+
+# Model weights (too large for git)
+*.h5
+*.keras
+
+# Data directories (download separately)
+data/train/
+data/test/
+data/uploads/
+
+# Package build artifacts
+*.egg-info/
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Keep placeholder files
+!models/.gitkeep
+!data/.gitkeep
