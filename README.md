@@ -8,6 +8,8 @@ This project extends the diabetes prediction work from the ML Summative into a f
 
 ## 🎥 Video Demo
 
+https://youtu.be/pxYmqBPlM2Y
+
 ---
 
 ## 🌐 Live URLs
