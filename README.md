@@ -8,14 +8,12 @@ This project extends the diabetes prediction work from the ML Summative into a f
 
 ## 🎥 Video Demo
 
-`[YouTube Demo Link - Insert After Recording]`
-
 ---
 
 ## 🌐 Live URLs
 
-- **API:** `[Render API URL - Insert after deployment]`
-- **UI Dashboard:** `[Render UI URL - Insert after deployment]`
+- **API:** `http://16.192.155.28:8000/docs`
+- **UI Dashboard:** `http://16.192.155.28:8501`
 
 ---
 
