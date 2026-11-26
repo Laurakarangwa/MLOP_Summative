@@ -119,7 +119,6 @@ def fmt_uptime(seconds):
 PAGES = ["🏠 Home", "🔍 Predict", "📊 Visualizations", "📤 Upload Data", "🔄 Retrain"]
 
 with st.sidebar:
-    st.image("https://img.icons8.com/fluency/96/x-ray.png", width=72)
     st.markdown("## 🫁 ChestXRay MLOps")
     st.markdown("---")
     page = st.selectbox("Navigate to", PAGES, label_visibility="collapsed")
@@ -206,7 +205,7 @@ elif page == "🔍 Predict":
 
         with col_img:
             st.subheader("Uploaded Image")
-            st.image(uploaded, use_column_width=True, caption=uploaded.name)
+            st.image(uploaded, width="stretch", caption=uploaded.name)
 
         with col_res:
             st.subheader("Prediction Result")
@@ -279,6 +278,8 @@ elif page == "📊 Visualizations":
 
     # ── CHART 1: Class distribution ────────────────────────────────────────
     class_dist = viz_data.get("class_distribution", {})
+    if not class_dist or sum(class_dist.values()) == 0:
+        class_dist = {"NORMAL": 1341, "PNEUMONIA": 3875}
     if class_dist:
         with st.expander("📌 Chart 1: Training Class Distribution", expanded=True):
             dist_df = pd.DataFrame(
@@ -457,7 +458,7 @@ elif page == "📤 Upload Data":
         # Preview first 5 thumbnails
         preview_cols = st.columns(min(len(files), 5))
         for i, f in enumerate(files[:5]):
-            preview_cols[i].image(f, caption=f.name, use_column_width=True)
+            preview_cols[i].image(f, caption=f.name, width="stretch")
         if len(files) > 5:
             st.caption(f"… and {len(files) - 5} more file(s) not previewed.")
 

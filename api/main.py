@@ -287,12 +287,25 @@ async def status() -> JSONResponse:
         except (json.JSONDecodeError, OSError):
             pass
 
+        upload_counts = {}
+    for cls in CLASS_NAMES:
+        cls_dir = UPLOADS_DIR / cls
+        if cls_dir.exists():
+            upload_counts[cls] = sum(
+                1 for p in cls_dir.iterdir()
+                if p.suffix.lower() in {".jpg", ".jpeg", ".png"}
+            )
+        else:
+            upload_counts[cls] = 0
+
     return JSONResponse({
         "model_path": str(MODEL_PATH),
         "model_exists": MODEL_PATH.exists(),
         "last_trained": last_trained,
         "accuracy": accuracy,
+        "upload_counts": upload_counts,
     })
+
 
 
 @app.get("/metrics", summary="Full model metrics")
@@ -472,8 +485,13 @@ def _background_retrain() -> None:
         # ---- 1. Load or build model ----------------------------------------
         if MODEL_PATH.exists():
             RETRAIN_STATUS["message"] = "Loading existing model…"
-            current_model = tf.keras.models.load_model(str(MODEL_PATH))
-            logger.info("Retrain: existing model loaded.")
+            current_model = tf.keras.models.load_model(str(MODEL_PATH), compile=False)
+            current_model.compile(
+                optimizer=tf.keras.optimizers.Adam(1e-4),
+                loss="categorical_crossentropy",
+                metrics=["accuracy"],
+            )
+            logger.info("Retrain: existing model loaded and recompiled.")
         else:
             RETRAIN_STATUS["message"] = "Building new MobileNetV2 model…"
             base = tf.keras.applications.MobileNetV2(

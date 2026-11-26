@@ -159,9 +159,9 @@ Simulated concurrent user traffic flooding the inference and health endpoints us
 
 | Concurrent Users | Avg Response Time (ms) | 95th Percentile (ms) | Throughput (RPS) | Failure Rate |
 |---|---|---|---|---|
-| **10 Users** | 2,398 ms | 4,201 ms | 4.04 req/s | 0.0% |
-| **50 Users** | 4,652 ms | 7,560 ms | 9.95 req/s | 0.0% |
-| **100 Users** | 8,961 ms | 12,062 ms | 10.54 req/s | 50.6% (Queue Timeout) |
+| **10 Users** | 2,256 ms | 2,905 ms | 4.26 req/s | 0.0% (0 failed) |
+| **50 Users** | 4,991 ms | 8,288 ms | 9.08 req/s | 1.5% (6 failed) |
+| **100 Users** | 6,602 ms | 12,029 ms | 13.92 req/s | 9.9% (79 failed) |
 
 ### Impact of Scaling Docker Containers
 

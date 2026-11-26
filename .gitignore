@@ -35,6 +35,8 @@ Thumbs.db
 # Jupyter
 .ipynb_checkpoints/
 
-# Keep placeholder files
+# Keep placeholder files and trained model
 !models/.gitkeep
+!models/chest_xray_model.h5
+!models/metrics.json
 !data/.gitkeep
